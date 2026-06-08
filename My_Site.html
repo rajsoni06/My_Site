@@ -4,13 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <title>Links Website</title>
     <style>
       :root {
-        --primary-glow: rgba(255, 255, 255, 0.3);
-        --card-bg: rgba(255, 255, 255, 0.12);
-        --card-border: rgba(255, 255, 255, 0.25);
+        --primary-glow: rgba(255, 255, 255, 0.4);
+        --card-bg: rgba(255, 255, 255, 0.45);
+        --card-border: rgba(255, 255, 255, 0.6);
+        --text-color: #2c3e50;
       }
 
       body, html {
@@ -18,12 +19,12 @@
         padding: 0;
         width: 100%;
         min-height: 100vh;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        /* Dynamic Abstract Gradient base */
-        background: linear-gradient(125deg, #2c1a4d, #7b1fa2, #00b0ff, #e040fb);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        /* Bright, energetic background: Cyan, Sky Blue, and Soft Mint Green (No Purples/Darks) */
+        background: linear-gradient(135deg, #e0f7fa, #e1f5fe, #e8f5e9, #b2ebf2);
         background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
-        color: white;
+        animation: gradientShift 14s ease infinite;
+        color: var(--text-color);
         overflow-x: hidden;
       }
 
@@ -33,7 +34,7 @@
         100% { background-position: 0% 50%; }
       }
 
-      /* 3D Fluid Ambient Layer */
+      /* Interactive Fluid Ambient Layer */
       #bg-canvas {
         position: fixed;
         top: 0;
@@ -42,8 +43,7 @@
         height: 100%;
         z-index: 1;
         pointer-events: none;
-        mix-blend-mode: screen;
-        opacity: 0.6;
+        opacity: 0.85;
       }
 
       /* Main Content Container */
@@ -59,20 +59,20 @@
         box-sizing: border-box;
       }
 
-      /* Ultra-refined Glassmorphism Profile Card */
+      /* Ultra-refined Light Glassmorphism Profile Card */
       .profile-card {
         background: var(--card-bg);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid var(--card-border);
         padding: 25px 20px;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+        box-shadow: 0 15px 35px rgba(31, 45, 61, 0.08);
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        max-width: 340px; /* Slimmer layout profile */
+        max-width: 340px;
         transform: translateY(20px);
         opacity: 0;
         animation: cardSpawn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -80,20 +80,26 @@
 
       .image-container {
         margin-bottom: 15px;
+        overflow: hidden;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        border: 3px solid #ffffff;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        background-color: #e0f2f1;
       }
 
       .image-container img {
-        border-radius: 50%;
-        border: 3px solid rgba(255, 255, 255, 0.8);
-        width: 100px; /* Reduced avatar size */
-        height: 100px;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Applied requested profile photo zoom scaling factor */
+        transform: scale(1.1);
+        transition: transform 0.3s cubic-bezier(0.15, 1, 0.3, 1);
       }
 
       .image-container img:hover {
-        transform: scale(1.08);
+        transform: scale(1.18);
       }
 
       .header-text {
@@ -103,25 +109,25 @@
 
       .header-text p {
         margin: 2px 0;
-        font-size: 1em;
-        color: rgba(255, 255, 255, 0.9);
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        font-size: 0.95em;
+        color: #5c6b73;
+        font-weight: 500;
       }
 
       .header-text .title-name {
-        font-size: 1.4em;
+        font-size: 1.35em;
         font-weight: 700;
-        color: #ffffff;
+        color: #1a2a3a;
         display: block;
         margin-top: 3px;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        letter-spacing: -0.3px;
       }
 
       .links-container {
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 10px; /* Closer button alignment */
+        gap: 9px;
       }
 
       /* Compact and smaller Link Buttons */
@@ -129,30 +135,32 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding: 10px 16px; /* Smaller and thinner padding */
-        font-size: 14px; /* Scaled down button text size */
-        font-weight: 500;
-        color: white;
+        padding: 11px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #2c3e50;
         text-decoration: none;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 10px;
-        transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: rgba(255, 255, 255, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
+        transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         box-sizing: border-box;
       }
 
       .link i {
         margin-right: 12px;
-        font-size: 15px; /* Scaled down icon sizing */
+        font-size: 15px;
         width: 20px;
         text-align: center;
+        color: #0288d1;
       }
 
       .link:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.5);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        background: rgba(255, 255, 255, 0.75);
+        border-color: #00b0ff;
+        transform: translateY(-1.5px);
+        color: #0288d1;
+        box-shadow: 0 6px 14px rgba(0, 176, 255, 0.15);
       }
 
       @keyframes cardSpawn {
@@ -168,23 +176,25 @@
           padding: 20px 15px;
         }
         .link {
-          font-size: 13px;
-          padding: 9px 14px;
+          font-size: 13.5px;
+          padding: 10px 14px;
         }
       }
     </style>
   </head>
   <body>
 
-    <!-- Canvas generating interactive fluid color distortions -->
+    <!-- Canvas generating interactive light fluid distortions -->
     <canvas id="bg-canvas"></canvas>
 
     <div class="container">
       <div class="profile-card">
         <div class="image-container">
+          <!-- Portfolio Image Path with direct zoom styling and initial fallback rendering -->
           <img
-            src="https://docs.google.com/uc?export=download&id=122JfqqQkYYByjKCtv6Qi5e5cJ9TsMZqy"
+            src="https://raj-soni-portfolio-site.netlify.app/assets/hero/My_Pic.jpg"
             alt="Raj Anand Soni"
+            onerror="if (this.src != 'https://api.dicebear.com/7.x/initials/svg?seed=Raj&backgroundColor=00b0ff') this.src='https://api.dicebear.com/7.x/initials/svg?seed=Raj&backgroundColor=00b0ff';"
           />
         </div>
 
@@ -195,31 +205,30 @@
 
         <div class="links-container">
           <a href="https://raj-soni-portfolio-site.netlify.app" class="link" target="_blank">
-            <i class="fas fa-briefcase"></i> My Portfolio
+            <i class="fas fa-briefcase" style="color: #0288d1;"></i> My Portfolio
           </a>
           <a href="https://rajsoni06.github.io/My_Projects/My_Projects.html" class="link" target="_blank">
-            <i class="fas fa-code"></i> My Projects
+            <i class="fas fa-code" style="color: #00b0ff;"></i> My Projects
           </a>
           <a href="https://www.linkedin.com/in/raj-anand-soni-037541212/" class="link" target="_blank">
-            <i class="fab fa-linkedin"></i> LinkedIn
+            <i class="fab fa-linkedin" style="color: #0077b5;"></i> LinkedIn
           </a>
           <a href="https://twitter.com/LuckySonicosmos?t=jpVPhoKG9mBluzkIsUfoEg&s=09" class="link" target="_blank">
-            <i class="fab fa-twitter"></i> Twitter
+            <i class="fab fa-x-twitter" style="color: #111111;"></i> Twitter
           </a>
           <a href="https://wa.me/qr/MSECXIUNBVMMC1" class="link" target="_blank">
-            <i class="fab fa-whatsapp"></i> WhatsApp
+            <i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp
           </a>
           <a href="https://www.instagram.com/lucky_sonicosmos/" class="link" target="_blank">
-            <i class="fab fa-instagram"></i> Instagram
+            <i class="fab fa-instagram" style="color: #e1306c;"></i> Instagram
           </a>
           <a href="https://sonilucky06062001.wixsite.com/reactor" class="link" target="_blank">
-            <i class="fas fa-globe"></i> My Site
+            <i class="fas fa-globe" style="color: #ff5722;"></i> My Site
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Script layer that warps dynamic abstract colors near the cursor -->
     <script>
       const canvas = document.getElementById('bg-canvas');
       const ctx = canvas.getContext('2d');
@@ -239,14 +248,13 @@
         mouse.y = e.clientY;
       });
 
-      // Abstract color blobs that create the 3D depth illumination
       class FluidBlob {
         constructor(color, radiusModifier) {
           this.x = Math.random() * width;
           this.y = Math.random() * height;
-          this.vx = (Math.random() - 0.5) * 1.5;
-          this.vy = (Math.random() - 0.5) * 1.5;
-          this.baseRadius = (Math.random() * 150 + 150) * radiusModifier;
+          this.vx = (Math.random() - 0.5) * 0.9;
+          this.vy = (Math.random() - 0.5) * 0.9;
+          this.baseRadius = (Math.random() * 140 + 160) * radiusModifier;
           this.radius = this.baseRadius;
           this.color = color;
         }
@@ -255,17 +263,15 @@
           this.x += this.vx;
           this.y += this.vy;
 
-          // Bounce tracking inside bounds
           if (this.x < 0 || this.x > width) this.vx *= -1;
           if (this.y < 0 || this.y > height) this.vy *= -1;
 
-          // Subtle interaction warp when cursor moves near
           let dx = mouse.x - this.x;
           let dy = mouse.y - this.y;
           let distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 400) {
-            this.radius = this.baseRadius + (400 - distance) * 0.15;
+          if (distance < 300) {
+            this.radius = this.baseRadius + (300 - distance) * 0.2;
           } else {
             this.radius = this.radius + (this.baseRadius - this.radius) * 0.05;
           }
@@ -274,7 +280,7 @@
         draw() {
           let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
           gradient.addColorStop(0, this.color);
-          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -283,10 +289,11 @@
         }
       }
 
+      // Replaced old purple/magenta orbs with vibrant Cyan, Deep Sky Blue, and fresh Mint Green
       const blobs = [
-        new FluidBlob('rgba(0, 229, 255, 0.4)', 1),   // Cyan Orb
-        new FluidBlob('rgba(224, 64, 251, 0.4)', 1.2), // Pink/Magenta Orb
-        new FluidBlob('rgba(123, 31, 162, 0.3)', 1.5)  // Royal Deep Purple Orb
+        new FluidBlob('rgba(0, 229, 255, 0.45)', 1),   // Bright Cyan Orb
+        new FluidBlob('rgba(41, 121, 255, 0.35)', 1.3), // Sky Blue Orb
+        new FluidBlob('rgba(105, 240, 174, 0.4)', 1.1)  // Mint Green Orb
       ];
 
       function renderLoop() {
