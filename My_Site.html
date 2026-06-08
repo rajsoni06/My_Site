@@ -8,9 +8,9 @@
     <title>Links Website</title>
     <style>
       :root {
-        --primary-glow: rgba(156, 39, 176, 0.4);
-        --card-bg: rgba(255, 255, 255, 0.08);
-        --card-border: rgba(255, 255, 255, 0.15);
+        --primary-glow: rgba(255, 255, 255, 0.3);
+        --card-bg: rgba(255, 255, 255, 0.12);
+        --card-border: rgba(255, 255, 255, 0.25);
       }
 
       body, html {
@@ -19,12 +19,21 @@
         width: 100%;
         min-height: 100vh;
         font-family: 'Segoe UI', Arial, sans-serif;
-        background-color: #0a0a16;
+        /* Dynamic Abstract Gradient base */
+        background: linear-gradient(125deg, #2c1a4d, #7b1fa2, #00b0ff, #e040fb);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
         color: white;
         overflow-x: hidden;
       }
 
-      /* 3D Canvas Background fixed to rear */
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* 3D Fluid Ambient Layer */
       #bg-canvas {
         position: fixed;
         top: 0;
@@ -33,9 +42,11 @@
         height: 100%;
         z-index: 1;
         pointer-events: none;
+        mix-blend-mode: screen;
+        opacity: 0.6;
       }
 
-      /* Main Content Container above canvas */
+      /* Main Content Container */
       .container {
         position: relative;
         z-index: 2;
@@ -44,113 +55,104 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        padding: 40px 20px;
+        padding: 30px 20px;
         box-sizing: border-box;
       }
 
-      /* Glassmorphism Profile Card */
+      /* Ultra-refined Glassmorphism Profile Card */
       .profile-card {
         background: var(--card-bg);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border: 1px solid var(--card-border);
-        padding: 35px 25px;
-        border-radius: 24px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        padding: 25px 20px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        max-width: 400px;
-        transform: translateY(30px);
+        max-width: 340px; /* Slimmer layout profile */
+        transform: translateY(20px);
         opacity: 0;
-        animation: cardSpawn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: cardSpawn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
       .image-container {
-        margin-bottom: 20px;
-        position: relative;
+        margin-bottom: 15px;
       }
 
-      /* Fixed Google Drive Image URL formatting */
       .image-container img {
         border-radius: 50%;
-        border: 4px solid #9c27b0;
-        width: 130px;
-        height: 130px;
+        border: 3px solid rgba(255, 255, 255, 0.8);
+        width: 100px; /* Reduced avatar size */
+        height: 100px;
         object-fit: cover;
-        box-shadow: 0 0 25px var(--primary-glow);
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .image-container img:hover {
-        transform: scale(1.08) rotate(3deg);
-        box-shadow: 0 0 35px rgba(156, 39, 176, 0.7);
+        transform: scale(1.08);
       }
 
       .header-text {
         text-align: center;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
       }
 
       .header-text p {
-        margin: 5px 0;
-        font-size: 1.15em;
-        color: #e0e0e6;
-        letter-spacing: 0.5px;
+        margin: 2px 0;
+        font-size: 1em;
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
       }
 
       .header-text .title-name {
-        font-size: 1.6em;
+        font-size: 1.4em;
         font-weight: 700;
-        background: linear-gradient(135deg, #e040fb, #00e5ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #ffffff;
         display: block;
-        margin-top: 5px;
+        margin-top: 3px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
       }
 
       .links-container {
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 14px;
+        gap: 10px; /* Closer button alignment */
       }
 
-      /* Sleek link design with minor 3D tilt simulation on hover */
+      /* Compact and smaller Link Buttons */
       .link {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding: 14px 20px;
-        font-size: 16px;
+        padding: 10px 16px; /* Smaller and thinner padding */
+        font-size: 14px; /* Scaled down button text size */
         font-weight: 500;
         color: white;
         text-decoration: none;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
         box-sizing: border-box;
       }
 
       .link i {
-        margin-right: 15px;
-        font-size: 18px;
-        width: 24px;
+        margin-right: 12px;
+        font-size: 15px; /* Scaled down icon sizing */
+        width: 20px;
         text-align: center;
-        transition: transform 0.3s ease;
       }
 
       .link:hover {
-        background: linear-gradient(135deg, rgba(156, 39, 176, 0.3), rgba(0, 229, 255, 0.2));
-        border-color: rgba(0, 229, 255, 0.4);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 229, 255, 0.1);
-      }
-
-      .link:hover i {
-        transform: scale(1.2);
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
       }
 
       @keyframes cardSpawn {
@@ -162,24 +164,24 @@
 
       @media (max-width: 480px) {
         .profile-card {
-          padding: 25px 15px;
+          max-width: 300px;
+          padding: 20px 15px;
         }
         .link {
-          font-size: 15px;
-          padding: 12px 16px;
+          font-size: 13px;
+          padding: 9px 14px;
         }
       }
     </style>
   </head>
   <body>
 
-    <!-- 3D Background Canvas Element -->
+    <!-- Canvas generating interactive fluid color distortions -->
     <canvas id="bg-canvas"></canvas>
 
     <div class="container">
       <div class="profile-card">
         <div class="image-container">
-          <!-- Direct download link endpoint allows image rendering -->
           <img
             src="https://docs.google.com/uc?export=download&id=122JfqqQkYYByjKCtv6Qi5e5cJ9TsMZqy"
             alt="Raj Anand Soni"
@@ -189,36 +191,35 @@
         <div class="header-text">
           <p>Welcome to</p>
           <span class="title-name">Raj Anand Soni's Space</span>
-          <p style="font-size: 0.9em; color: #a0a0ab; margin-top: 10px;">Discover my latest projects & platforms</p>
         </div>
 
         <div class="links-container">
           <a href="https://raj-soni-portfolio-site.netlify.app" class="link" target="_blank">
-            <i class="fas fa-briefcase" style="color: #ff4081;"></i> My Portfolio
+            <i class="fas fa-briefcase"></i> My Portfolio
           </a>
           <a href="https://rajsoni06.github.io/My_Projects/My_Projects.html" class="link" target="_blank">
-            <i class="fas fa-code" style="color: #00e5ff;"></i> My Projects
+            <i class="fas fa-code"></i> My Projects
           </a>
           <a href="https://www.linkedin.com/in/raj-anand-soni-037541212/" class="link" target="_blank">
-            <i class="fab fa-linkedin" style="color: #0077b5;"></i> LinkedIn
+            <i class="fab fa-linkedin"></i> LinkedIn
           </a>
           <a href="https://twitter.com/LuckySonicosmos?t=jpVPhoKG9mBluzkIsUfoEg&s=09" class="link" target="_blank">
-            <i class="fab fa-twitter" style="color: #1da1f2;"></i> Twitter
+            <i class="fab fa-twitter"></i> Twitter
           </a>
           <a href="https://wa.me/qr/MSECXIUNBVMMC1" class="link" target="_blank">
-            <i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp
+            <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
           <a href="https://www.instagram.com/lucky_sonicosmos/" class="link" target="_blank">
-            <i class="fab fa-instagram" style="color: #e1306c;"></i> Instagram
+            <i class="fab fa-instagram"></i> Instagram
           </a>
           <a href="https://sonilucky06062001.wixsite.com/reactor" class="link" target="_blank">
-            <i class="fas fa-globe" style="color: #e040fb;"></i> My Site
+            <i class="fas fa-globe"></i> My Site
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Background script generating an interactive 3D particle landscape -->
+    <!-- Script layer that warps dynamic abstract colors near the cursor -->
     <script>
       const canvas = document.getElementById('bg-canvas');
       const ctx = canvas.getContext('2d');
@@ -226,82 +227,80 @@
       let width = canvas.width = window.innerWidth;
       let height = canvas.height = window.innerHeight;
 
-      const numParticles = 120;
-      const particles = [];
+      let mouse = { x: width / 2, y: height / 2 };
       
-      let mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2 };
-
       window.addEventListener('resize', () => {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
       });
 
       window.addEventListener('mousemove', (e) => {
-        mouse.targetX = e.clientX;
-        mouse.targetY = e.clientY;
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
       });
 
-      class Particle {
-        constructor() {
-          this.reset();
-          this.y = Math.random() * height; 
-        }
-
-        reset() {
+      // Abstract color blobs that create the 3D depth illumination
+      class FluidBlob {
+        constructor(color, radiusModifier) {
           this.x = Math.random() * width;
-          this.y = -20;
-          this.z = Math.random() * 3 + 0.5; // Z value simulates layer depth
-          this.speed = (Math.random() * 0.5 + 0.2) * this.z;
-          this.radius = Math.random() * 1.5 + 0.5 * this.z;
-          this.color = Math.random() > 0.5 ? 'rgba(156, 39, 176, ' + (0.1 * this.z) + ')' : 'rgba(0, 229, 255, ' + (0.1 * this.z) + ')';
+          this.y = Math.random() * height;
+          this.vx = (Math.random() - 0.5) * 1.5;
+          this.vy = (Math.random() - 0.5) * 1.5;
+          this.baseRadius = (Math.random() * 150 + 150) * radiusModifier;
+          this.radius = this.baseRadius;
+          this.color = color;
         }
 
         update() {
-          this.y += this.speed;
-          
-          // Parallax calculation shifts background dots slower than foreground elements
-          const driftX = (mouse.x - width / 2) * (this.z * 0.015);
-          this.renderX = this.x - driftX;
-          this.renderY = this.y;
+          this.x += this.vx;
+          this.y += this.vy;
 
-          if (this.y > height + 20 || this.renderX < -20 || this.renderX > width + 20) {
-            this.reset();
+          // Bounce tracking inside bounds
+          if (this.x < 0 || this.x > width) this.vx *= -1;
+          if (this.y < 0 || this.y > height) this.vy *= -1;
+
+          // Subtle interaction warp when cursor moves near
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 400) {
+            this.radius = this.baseRadius + (400 - distance) * 0.15;
+          } else {
+            this.radius = this.radius + (this.baseRadius - this.radius) * 0.05;
           }
         }
 
         draw() {
+          let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+          gradient.addColorStop(0, this.color);
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
           ctx.beginPath();
-          ctx.arc(this.renderX, this.renderY, this.radius, 0, Math.PI * 2);
-          ctx.fillStyle = this.color;
-          ctx.shadowBlur = this.z * 2;
-          ctx.shadowColor = this.color;
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
           ctx.fill();
         }
       }
 
-      for (let i = 0; i < numParticles; i++) {
-        particles.push(new Particle());
-      }
+      const blobs = [
+        new FluidBlob('rgba(0, 229, 255, 0.4)', 1),   // Cyan Orb
+        new FluidBlob('rgba(224, 64, 251, 0.4)', 1.2), // Pink/Magenta Orb
+        new FluidBlob('rgba(123, 31, 162, 0.3)', 1.5)  // Royal Deep Purple Orb
+      ];
 
-      function animate() {
-        // Easing calculations soften sharp cursor changes
-        mouse.x += (mouse.targetX - mouse.x) * 0.08;
-        mouse.y += (mouse.targetY - mouse.y) * 0.08;
+      function renderLoop() {
+        ctx.clearRect(0, 0, width, height);
 
-        ctx.fillStyle = 'rgba(10, 10, 22, 0.2)'; 
-        ctx.fillRect(0, 0, width, height);
-        
-        ctx.shadowBlur = 0; // Reset canvas shadows between drawing steps
-
-        particles.forEach(p => {
-          p.update();
-          p.draw();
+        blobs.forEach(blob => {
+          blob.update();
+          blob.draw();
         });
 
-        requestAnimationFrame(animate);
+        requestAnimationFrame(renderLoop);
       }
 
-      animate();
+      renderLoop();
     </script>
   </body>
 </html>
