@@ -9,8 +9,8 @@
     <style>
       :root {
         --primary-glow: rgba(255, 255, 255, 0.4);
-        --card-bg: rgba(255, 255, 255, 0.45);
-        --card-border: rgba(255, 255, 255, 0.6);
+        --card-bg: rgba(255, 255, 255, 0.5);
+        --card-border: rgba(255, 255, 255, 0.65);
         --text-color: #2c3e50;
       }
 
@@ -20,18 +20,9 @@
         width: 100%;
         min-height: 100vh;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        /* Bright, energetic background: Cyan, Sky Blue, and Soft Mint Green (No Purples/Darks) */
-        background: linear-gradient(135deg, #e0f7fa, #e1f5fe, #e8f5e9, #b2ebf2);
-        background-size: 400% 400%;
-        animation: gradientShift 14s ease infinite;
         color: var(--text-color);
         overflow-x: hidden;
-      }
-
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        transition: background 2s ease;
       }
 
       /* Interactive Fluid Ambient Layer */
@@ -46,46 +37,46 @@
         opacity: 0.85;
       }
 
-      /* Main Content Container */
+      /* Main Content Container - Very little gap at the top */
       .container {
         position: relative;
         z-index: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start; /* Aligns to top instead of center */
         min-height: 100vh;
-        padding: 30px 20px;
+        padding: 15px 20px 40px 20px; /* Reduced top padding significantly */
         box-sizing: border-box;
       }
 
       /* Ultra-refined Light Glassmorphism Profile Card */
       .profile-card {
         background: var(--card-bg);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         border: 1px solid var(--card-border);
-        padding: 25px 20px;
-        border-radius: 24px;
-        box-shadow: 0 15px 35px rgba(31, 45, 61, 0.08);
+        padding: 20px 18px;
+        border-radius: 20px;
+        box-shadow: 0 12px 30px rgba(31, 45, 61, 0.06);
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        max-width: 340px;
-        transform: translateY(20px);
+        max-width: 320px; /* Sized down slightly */
+        transform: translateY(10px);
         opacity: 0;
         animation: cardSpawn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
       .image-container {
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         overflow: hidden;
         border-radius: 50%;
-        width: 100px;
-        height: 100px;
-        border: 3px solid #ffffff;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        width: 85px; /* Scaled down slightly */
+        height: 85px;
+        border: 2.5px solid #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         background-color: #e0f2f1;
       }
 
@@ -93,7 +84,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        /* Applied requested profile photo zoom scaling factor */
         transform: scale(1.1);
         transition: transform 0.3s cubic-bezier(0.15, 1, 0.3, 1);
       }
@@ -104,22 +94,22 @@
 
       .header-text {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
 
       .header-text p {
-        margin: 2px 0;
-        font-size: 0.95em;
+        margin: 0;
+        font-size: 0.85em; /* Made text smaller */
         color: #5c6b73;
         font-weight: 500;
       }
 
       .header-text .title-name {
-        font-size: 1.35em;
+        font-size: 1.2em; /* Made text smaller */
         font-weight: 700;
         color: #1a2a3a;
         display: block;
-        margin-top: 3px;
+        margin-top: 2px;
         letter-spacing: -0.3px;
       }
 
@@ -127,41 +117,62 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 9px;
+        gap: 8px; /* Tighter button gaps */
       }
 
-      /* Compact and smaller Link Buttons */
+      /* Compact and Smaller Link Buttons */
       .link {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding: 11px 16px;
-        font-size: 14px;
+        padding: 9px 14px; /* Reduced padding for smaller footprint */
+        font-size: 13px; /* Smaller font standard */
         font-weight: 600;
-        color: #2c3e50;
+        color: #34495e;
         text-decoration: none;
-        background: rgba(255, 255, 255, 0.45);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        border-radius: 12px;
-        transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 10px;
+        transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         box-sizing: border-box;
       }
 
       .link i {
-        margin-right: 12px;
-        font-size: 15px;
-        width: 20px;
+        margin-right: 10px;
+        font-size: 14px;
+        width: 18px;
         text-align: center;
-        color: #0288d1;
       }
 
       .link:hover {
-        background: rgba(255, 255, 255, 0.75);
-        border-color: #00b0ff;
-        transform: translateY(-1.5px);
-        color: #0288d1;
-        box-shadow: 0 6px 14px rgba(0, 176, 255, 0.15);
+        background: rgba(255, 255, 255, 0.85);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       }
+
+      /* Default link states for custom brand accents on hover */
+      .link-portfolio i { color: #0288d1; }
+      .link-portfolio:hover { border-color: #0288d1; color: #0288d1; }
+
+      .link-projects i { color: #00b0ff; }
+      .link-projects:hover { border-color: #00b0ff; color: #00b0ff; }
+
+      .link-linkedin i { color: #0077b5; }
+      .link-linkedin:hover { border-color: #0077b5; color: #0077b5; }
+
+      /* Fixed Dark/Proper color for X (Twitter) */
+      .link-x i { color: #1a1a1a; }
+      .link-x:hover { border-color: #1a1a1a; color: #1a1a1a; background: rgba(240, 240, 240, 0.9); }
+
+      .link-whatsapp i { color: #25d366; }
+      .link-whatsapp:hover { border-color: #25d366; color: #25d366; }
+
+      .link-instagram i { color: #e1306c; }
+      .link-instagram:hover { border-color: #e1306c; color: #e1306c; }
+
+      .link-site i { color: #ff5722; }
+      .link-site:hover { border-color: #ff5722; color: #ff5722; }
+
 
       @keyframes cardSpawn {
         to {
@@ -171,13 +182,16 @@
       }
 
       @media (max-width: 480px) {
+        .container {
+          padding-top: 10px;
+        }
         .profile-card {
-          max-width: 300px;
-          padding: 20px 15px;
+          max-width: 285px;
+          padding: 18px 14px;
         }
         .link {
-          font-size: 13.5px;
-          padding: 10px 14px;
+          font-size: 12.5px;
+          padding: 8px 12px;
         }
       }
     </style>
@@ -190,7 +204,6 @@
     <div class="container">
       <div class="profile-card">
         <div class="image-container">
-          <!-- Portfolio Image Path with direct zoom styling and initial fallback rendering -->
           <img
             src="https://raj-soni-portfolio-site.netlify.app/assets/hero/My_Pic.jpg"
             alt="Raj Anand Soni"
@@ -204,26 +217,26 @@
         </div>
 
         <div class="links-container">
-          <a href="https://raj-soni-portfolio-site.netlify.app" class="link" target="_blank">
-            <i class="fas fa-briefcase" style="color: #0288d1;"></i> My Portfolio
+          <a href="https://raj-soni-portfolio-site.netlify.app" class="link link-portfolio" target="_blank">
+            <i class="fas fa-briefcase"></i> My Portfolio
           </a>
-          <a href="https://rajsoni06.github.io/My_Projects/My_Projects.html" class="link" target="_blank">
-            <i class="fas fa-code" style="color: #00b0ff;"></i> My Projects
+          <a href="https://rajsoni06.github.io/My_Projects/My_Projects.html" class="link link-projects" target="_blank">
+            <i class="fas fa-code"></i> My Projects
           </a>
-          <a href="https://www.linkedin.com/in/raj-anand-soni-037541212/" class="link" target="_blank">
-            <i class="fab fa-linkedin" style="color: #0077b5;"></i> LinkedIn
+          <a href="https://www.linkedin.com/in/raj-anand-soni-037541212/" class="link link-linkedin" target="_blank">
+            <i class="fab fa-linkedin"></i> LinkedIn
           </a>
-          <a href="https://twitter.com/LuckySonicosmos?t=jpVPhoKG9mBluzkIsUfoEg&s=09" class="link" target="_blank">
-            <i class="fab fa-x-twitter" style="color: #0288d1;"></i> Twitter
+          <a href="https://twitter.com/LuckySonicosmos?t=jpVPhoKG9mBluzkIsUfoEg&s=09" class="link link-x" target="_blank">
+            <i class="fab fa-x-twitter"></i> Twitter
           </a>
-          <a href="https://wa.me/qr/MSECXIUNBVMMC1" class="link" target="_blank">
-            <i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp
+          <a href="https://wa.me/qr/MSECXIUNBVMMC1" class="link link-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
-          <a href="https://www.instagram.com/lucky_sonicosmos/" class="link" target="_blank">
-            <i class="fab fa-instagram" style="color: #e1306c;"></i> Instagram
+          <a href="https://www.instagram.com/lucky_sonicosmos/" class="link link-instagram" target="_blank">
+            <i class="fab fa-instagram"></i> Instagram
           </a>
-          <a href="https://sonilucky06062001.wixsite.com/reactor" class="link" target="_blank">
-            <i class="fas fa-globe" style="color: #ff5722;"></i> My Site
+          <a href="https://sonilucky06062001.wixsite.com/reactor" class="link link-site" target="_blank">
+            <i class="fas fa-globe"></i> My Site
           </a>
         </div>
       </div>
@@ -249,14 +262,14 @@
       });
 
       class FluidBlob {
-        constructor(color, radiusModifier) {
+        constructor(colorKey, radiusModifier) {
           this.x = Math.random() * width;
           this.y = Math.random() * height;
-          this.vx = (Math.random() - 0.5) * 0.9;
-          this.vy = (Math.random() - 0.5) * 0.9;
-          this.baseRadius = (Math.random() * 140 + 160) * radiusModifier;
+          this.vx = (Math.random() - 0.5) * 0.7;
+          this.vy = (Math.random() - 0.5) * 0.7;
+          this.baseRadius = (Math.random() * 120 + 140) * radiusModifier;
           this.radius = this.baseRadius;
-          this.color = color;
+          this.colorKey = colorKey; // Keep reference to update color based on theme
         }
 
         update() {
@@ -270,16 +283,17 @@
           let dy = mouse.y - this.y;
           let distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 300) {
-            this.radius = this.baseRadius + (300 - distance) * 0.2;
+          if (distance < 250) {
+            this.radius = this.baseRadius + (250 - distance) * 0.25;
           } else {
             this.radius = this.radius + (this.baseRadius - this.radius) * 0.05;
           }
         }
 
-        draw() {
+        draw(colorMap) {
+          let color = colorMap[this.colorKey];
           let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-          gradient.addColorStop(0, this.color);
+          gradient.addColorStop(0, color);
           gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
           ctx.beginPath();
@@ -289,19 +303,59 @@
         }
       }
 
-      // Replaced old purple/magenta orbs with vibrant Cyan, Deep Sky Blue, and fresh Mint Green
+      // Configuration profiles mapping time ranges to dynamic themes
+      const themes = {
+        morning: { // 5 AM - 12 PM: Fresh, waking light
+          background: "linear-gradient(135deg, #e0f7fa, #fff9c4, #e8f5e9, #b2ebf2)",
+          blob1: 'rgba(0, 229, 255, 0.4)',
+          blob2: 'rgba(255, 235, 59, 0.3)',
+          blob3: 'rgba(105, 240, 174, 0.35)'
+        },
+        afternoon: { // 12 PM - 5 PM: Warm, energetic bright sky
+          background: "linear-gradient(135deg, #e1f5fe, #e0f2f1, #e0f7fa, #fff3e0)",
+          blob1: 'rgba(3, 169, 244, 0.35)',
+          blob2: 'rgba(0, 200, 83, 0.25)',
+          blob3: 'rgba(255, 152, 0, 0.25)'
+        },
+        evening: { // 5 PM - 8 PM: Golden hour dusk transformation
+          background: "linear-gradient(135deg, #ffe0b2, #f8bbd0, #e1bee7, #ffcc80)",
+          blob1: 'rgba(255, 112, 67, 0.4)',
+          blob2: 'rgba(156, 39, 176, 0.25)',
+          blob3: 'rgba(244, 143, 177, 0.35)'
+        },
+        night: { // 8 PM - 5 AM: Sleek, ambient midnight light-glass contrast
+          background: "linear-gradient(135deg, #cfd8dc, #b0bec5, #eceff1, #90a4ae)",
+          blob1: 'rgba(69, 90, 100, 0.3)',
+          blob2: 'rgba(144, 202, 249, 0.35)',
+          blob3: 'rgba(120, 144, 156, 0.25)'
+        }
+      };
+
+      function getCurrentTheme() {
+        const hour = new Date().getHours();
+        if (hour >= 5 && hour < 12) return themes.morning;
+        if (hour >= 12 && hour < 17) return themes.afternoon;
+        if (hour >= 17 && hour < 20) return themes.evening;
+        return themes.night;
+      }
+
+      // Initialize the fluid particle structure
       const blobs = [
-        new FluidBlob('rgba(0, 229, 255, 0.45)', 1),   // Bright Cyan Orb
-        new FluidBlob('rgba(41, 121, 255, 0.35)', 1.3), // Sky Blue Orb
-        new FluidBlob('rgba(105, 240, 174, 0.4)', 1.1)  // Mint Green Orb
+        new FluidBlob('blob1', 1),
+        new FluidBlob('blob2', 1.2),
+        new FluidBlob('blob3', 1.1)
       ];
 
       function renderLoop() {
         ctx.clearRect(0, 0, width, height);
+        
+        const currentTheme = getCurrentTheme();
+        // Dynamically shift overall container background based on current time profile
+        document.body.style.background = currentTheme.background;
 
         blobs.forEach(blob => {
           blob.update();
-          blob.draw();
+          blob.draw(currentTheme);
         });
 
         requestAnimationFrame(renderLoop);
