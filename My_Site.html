@@ -22,7 +22,17 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         color: var(--text-color);
         overflow-x: hidden;
-        transition: background 2s ease;
+        
+        /* Smooth, abstract background looping from right to left */
+        background: linear-gradient(270deg, #e0f7fa, #fff9c4, #e8f5e9, #b2ebf2, #ffe0b2, #e0f7fa);
+        background-size: 400% 100%;
+        animation: gradientShiftRightToLeft 18s linear infinite;
+      }
+
+      /* Background shift going right to left */
+      @keyframes gradientShiftRightToLeft {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 400% 50%; }
       }
 
       /* Interactive Fluid Ambient Layer */
@@ -37,33 +47,33 @@
         opacity: 0.85;
       }
 
-      /* Main Content Container - Very little gap at the top */
+      /* Main Content Container with minimized top spacing */
       .container {
         position: relative;
         z-index: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start; /* Aligns to top instead of center */
+        justify-content: flex-start;
         min-height: 100vh;
-        padding: 15px 20px 40px 20px; /* Reduced top padding significantly */
+        padding: 15px 20px 40px 20px;
         box-sizing: border-box;
       }
 
-      /* Ultra-refined Light Glassmorphism Profile Card */
+      /* Glassmorphism Profile Card Layout */
       .profile-card {
         background: var(--card-bg);
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
         border: 1px solid var(--card-border);
-        padding: 20px 18px;
+        padding: 24px 20px;
         border-radius: 20px;
-        box-shadow: 0 12px 30px rgba(31, 45, 61, 0.06);
+        box-shadow: 0 12px 30px rgba(31, 45, 61, 0.05);
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        max-width: 320px; /* Sized down slightly */
+        max-width: 330px;
         transform: translateY(10px);
         opacity: 0;
         animation: cardSpawn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -73,8 +83,8 @@
         margin-bottom: 12px;
         overflow: hidden;
         border-radius: 50%;
-        width: 85px; /* Scaled down slightly */
-        height: 85px;
+        width: 88px;
+        height: 88px;
         border: 2.5px solid #ffffff;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         background-color: #e0f2f1;
@@ -94,18 +104,18 @@
 
       .header-text {
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
 
       .header-text p {
         margin: 0;
-        font-size: 0.85em; /* Made text smaller */
+        font-size: 0.88em;
         color: #5c6b73;
         font-weight: 500;
       }
 
       .header-text .title-name {
-        font-size: 1.2em; /* Made text smaller */
+        font-size: 1.25em;
         font-weight: 700;
         color: #1a2a3a;
         display: block;
@@ -117,40 +127,40 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 8px; /* Tighter button gaps */
+        gap: 10px; /* Comfortable layout distribution */
       }
 
-      /* Compact and Smaller Link Buttons */
+      /* Re-sized and optimized link UI button elements */
       .link {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding: 9px 14px; /* Reduced padding for smaller footprint */
-        font-size: 13px; /* Smaller font standard */
+        padding: 12px 16px; /* Bumped up sizing slightly */
+        font-size: 14px; /* Increased readability size */
         font-weight: 600;
-        color: #34495e;
+        color: #2c3e50;
         text-decoration: none;
-        background: rgba(255, 255, 255, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 10px;
-        transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        border-radius: 12px;
+        transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         box-sizing: border-box;
       }
 
       .link i {
-        margin-right: 10px;
-        font-size: 14px;
-        width: 18px;
+        margin-right: 12px;
+        font-size: 15px;
+        width: 20px;
         text-align: center;
       }
 
       .link:hover {
-        background: rgba(255, 255, 255, 0.85);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-1.5px);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
       }
 
-      /* Default link states for custom brand accents on hover */
+      /* Hover States and Brand Accents */
       .link-portfolio i { color: #0288d1; }
       .link-portfolio:hover { border-color: #0288d1; color: #0288d1; }
 
@@ -160,9 +170,8 @@
       .link-linkedin i { color: #0077b5; }
       .link-linkedin:hover { border-color: #0077b5; color: #0077b5; }
 
-      /* Fixed Dark/Proper color for X (Twitter) */
       .link-x i { color: #1a1a1a; }
-      .link-x:hover { border-color: #1a1a1a; color: #1a1a1a; background: rgba(240, 240, 240, 0.9); }
+      .link-x:hover { border-color: #1a1a1a; color: #1a1a1a; background: rgba(245, 245, 245, 0.95); }
 
       .link-whatsapp i { color: #25d366; }
       .link-whatsapp:hover { border-color: #25d366; color: #25d366; }
@@ -172,7 +181,6 @@
 
       .link-site i { color: #ff5722; }
       .link-site:hover { border-color: #ff5722; color: #ff5722; }
-
 
       @keyframes cardSpawn {
         to {
@@ -186,12 +194,12 @@
           padding-top: 10px;
         }
         .profile-card {
-          max-width: 285px;
-          padding: 18px 14px;
+          max-width: 295px;
+          padding: 20px 16px;
         }
         .link {
-          font-size: 12.5px;
-          padding: 8px 12px;
+          font-size: 13.5px;
+          padding: 11px 14px;
         }
       }
     </style>
@@ -262,38 +270,53 @@
       });
 
       class FluidBlob {
-        constructor(colorKey, radiusModifier) {
+        constructor(baseColors, radiusModifier) {
           this.x = Math.random() * width;
           this.y = Math.random() * height;
-          this.vx = (Math.random() - 0.5) * 0.7;
-          this.vy = (Math.random() - 0.5) * 0.7;
-          this.baseRadius = (Math.random() * 120 + 140) * radiusModifier;
+          
+          // Velocity pulled predominantly from right to left (-vx baseline)
+          this.vx = -(Math.random() * 0.4 + 0.3);
+          this.vy = (Math.random() - 0.5) * 0.4;
+          
+          this.baseRadius = (Math.random() * 130 + 150) * radiusModifier;
           this.radius = this.baseRadius;
-          this.colorKey = colorKey; // Keep reference to update color based on theme
+          this.colorIdx = 0;
+          this.colors = baseColors;
+          this.colorTimer = 0;
         }
 
         update() {
           this.x += this.vx;
           this.y += this.vy;
 
-          if (this.x < 0 || this.x > width) this.vx *= -1;
+          // Wrap or bounce mechanics adjusted to feel cohesive with right-to-left wind
+          if (this.x < -this.radius) this.x = width + this.radius;
           if (this.y < 0 || this.y > height) this.vy *= -1;
 
           let dx = mouse.x - this.x;
           let dy = mouse.y - this.y;
           let distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 250) {
-            this.radius = this.baseRadius + (250 - distance) * 0.25;
+          if (distance < 260) {
+            this.radius = this.baseRadius + (260 - distance) * 0.22;
           } else {
             this.radius = this.radius + (this.baseRadius - this.radius) * 0.05;
           }
+
+          // Cycle blob composition over time smoothly
+          this.colorTimer += 0.002;
+          if(this.colorTimer > 1) {
+            this.colorTimer = 0;
+            this.colorIdx = (this.colorIdx + 1) % this.colors.length;
+          }
         }
 
-        draw(colorMap) {
-          let color = colorMap[this.colorKey];
+        draw() {
+          let nextIdx = (this.colorIdx + 1) % this.colors.length;
           let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-          gradient.addColorStop(0, color);
+          
+          // Abstract blending color interpolations
+          gradient.addColorStop(0, this.colors[this.colorIdx]);
           gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
           ctx.beginPath();
@@ -303,59 +326,26 @@
         }
       }
 
-      // Configuration profiles mapping time ranges to dynamic themes
-      const themes = {
-        morning: { // 5 AM - 12 PM: Fresh, waking light
-          background: "linear-gradient(135deg, #e0f7fa, #fff9c4, #e8f5e9, #b2ebf2)",
-          blob1: 'rgba(0, 229, 255, 0.4)',
-          blob2: 'rgba(255, 235, 59, 0.3)',
-          blob3: 'rgba(105, 240, 174, 0.35)'
-        },
-        afternoon: { // 12 PM - 5 PM: Warm, energetic bright sky
-          background: "linear-gradient(135deg, #e1f5fe, #e0f2f1, #e0f7fa, #fff3e0)",
-          blob1: 'rgba(3, 169, 244, 0.35)',
-          blob2: 'rgba(0, 200, 83, 0.25)',
-          blob3: 'rgba(255, 152, 0, 0.25)'
-        },
-        evening: { // 5 PM - 8 PM: Golden hour dusk transformation
-          background: "linear-gradient(135deg, #ffe0b2, #f8bbd0, #e1bee7, #ffcc80)",
-          blob1: 'rgba(255, 112, 67, 0.4)',
-          blob2: 'rgba(156, 39, 176, 0.25)',
-          blob3: 'rgba(244, 143, 177, 0.35)'
-        },
-        night: { // 8 PM - 5 AM: Sleek, ambient midnight light-glass contrast
-          background: "linear-gradient(135deg, #cfd8dc, #b0bec5, #eceff1, #90a4ae)",
-          blob1: 'rgba(69, 90, 100, 0.3)',
-          blob2: 'rgba(144, 202, 249, 0.35)',
-          blob3: 'rgba(120, 144, 156, 0.25)'
-        }
-      };
+      // Intersecting vibrant palettes that shift over time configurations
+      const abstractColors = [
+        'rgba(0, 229, 255, 0.35)',  // Cyan
+        'rgba(105, 240, 174, 0.33)', // Mint
+        'rgba(255, 171, 64, 0.25)',  // Soft Amber
+        'rgba(41, 121, 255, 0.28)'   // Sky Blue
+      ];
 
-      function getCurrentTheme() {
-        const hour = new Date().getHours();
-        if (hour >= 5 && hour < 12) return themes.morning;
-        if (hour >= 12 && hour < 17) return themes.afternoon;
-        if (hour >= 17 && hour < 20) return themes.evening;
-        return themes.night;
-      }
-
-      // Initialize the fluid particle structure
       const blobs = [
-        new FluidBlob('blob1', 1),
-        new FluidBlob('blob2', 1.2),
-        new FluidBlob('blob3', 1.1)
+        new FluidBlob(abstractColors, 1),
+        new FluidBlob(['rgba(105, 240, 174, 0.3)', 'rgba(41, 121, 255, 0.3)', 'rgba(255, 110, 64, 0.2)'], 1.25),
+        new FluidBlob(['rgba(255, 235, 59, 0.25)', 'rgba(0, 229, 255, 0.3)', 'rgba(233, 30, 99, 0.15)'], 1.1)
       ];
 
       function renderLoop() {
         ctx.clearRect(0, 0, width, height);
-        
-        const currentTheme = getCurrentTheme();
-        // Dynamically shift overall container background based on current time profile
-        document.body.style.background = currentTheme.background;
 
         blobs.forEach(blob => {
           blob.update();
-          blob.draw(currentTheme);
+          blob.draw();
         });
 
         requestAnimationFrame(renderLoop);
